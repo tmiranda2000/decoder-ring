@@ -12,8 +12,9 @@ const caesarModule = (function () {
     const result = [];
     
     messageChars.forEach((messageChar) => {
-      let shiftedValue = alphabet.findIndex(messageChar) + shift;
-      
+      let shiftedValue = alphabet.findIndex((letter) => letter === messageChar) + shift;
+      const shiftedChar = alphabet[shiftedValue];
+      result.push(shiftedChar);
     })
     
     return result.join("");

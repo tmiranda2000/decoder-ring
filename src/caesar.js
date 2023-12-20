@@ -8,13 +8,23 @@ const caesarModule = (function () {
   
 
   function caesar(input, shift, encode = true) {
+    if(shift === 0 || shift > 25 || shift < -25){
+      return false;
+    }
     const messageChars = input.toLowerCase().split("");
     const result = [];
     
     messageChars.forEach((messageChar) => {
-      let shiftedValue = alphabet.findIndex((letter) => letter === messageChar) + shift;
-      const shiftedChar = alphabet[shiftedValue];
-      result.push(shiftedChar);
+     // let shiftedValue = alphabet.findIndex((letter) => letter === messageChar) + shift;
+      const alphaIndex = alphabet.findIndex((letter) => letter === messageChar );
+      if (alphaIndex > -1){
+        const shiftedValue = alphaIndex + shift;
+        const shiftedChar = alphabet[shiftedValue];
+        result.push(shiftedChar);
+
+      } else {
+        result.push(messageChar);
+      }
     })
     
     return result.join("");
